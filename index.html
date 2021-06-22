@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
         integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
         crossorigin="anonymous" />
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="./CSS/style.css">
 </head>
 
@@ -40,7 +41,10 @@
                 <h1>Daftar Buku</h1>
                 <div class="search-bar">
                     <i class="fas fa-search btn" id="searchButton"></i>
-                    <input type="text" class="input" id="search" placeholder="Search...">
+                    <div>
+                        <input type="text" class="input" id="search" placeholder="Search...">
+                        <i class="fas fa-times" title="Clear search" id="clear-search"></i>
+                    </div>
                 </div>
             </div>
 
@@ -65,9 +69,6 @@
                     <tbody id="list-post"></tbody>
                 </table>
             </div>
-            <div class="halaman" id="pagination-wrapper">
-
-            </div>
         </div>
     </div>
 
@@ -78,10 +79,6 @@
         </div>
         <div class="mt-4">
             <form id="form">
-                <div class="form-group">
-                    <label for="id">ID Buku</label>
-                    <input type="text" placeholder="ID Buku" class="form-control" name="id" required>
-                </div>
                 <div class="form-group">
                     <label for="judul">Judul Buku</label>
                     <input type="text" placeholder="Judul" class="form-control" name="judul" required>
@@ -95,7 +92,7 @@
                     <input type="text" placeholder="Tahun" class="form-control" name="tahun" required>
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="completed" id="completed" required>
+                    <input type="checkbox" class="form-check-input" name="completed" id="completed">
                     <label for="completed">Sudah selesai dibaca</label>
                 </div>
                 <button class="btn btn-primary no-outline" id="submit">Submit</button>

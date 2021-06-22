@@ -157,7 +157,7 @@
     margin-bottom: 20px;
 }
 
-.search-bar .input {
+.search-bar .input, .search-bar .fa-times {
     position: absolute;
     left: 80px;
     top: 10px;
@@ -170,10 +170,22 @@
     transition: all 0.3s ease;
 }
 
+.search-bar .fa-times{
+    padding: 8px;
+    background: none;
+    cursor: pointer;
+    color: red;
+}
+
 .search-bar.active .input {
     transform: translateX(80px);
-    width: 300px;
+    width: 250px;
 }
+
+.search-bar.active .fa-times {
+    transform: translateX(350px);
+}
+
 
 .table-responsive{
     overflow-x: auto;

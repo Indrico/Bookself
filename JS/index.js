@@ -5,9 +5,46 @@ const menuTambah = document.querySelector('.menu-tambah-buku');
 const dimContainer = document.querySelector('.dim-container');
 const tombolClose = document.getElementById('close');
 const form = document.getElementById('form');
-const clearSearch = document.querySelector('#clear-search')
+const clearSearch = document.querySelector('#clear-search');
+const selesai = document.getElementById('selesai');
+const belum = document.getElementById('belum');
+const semua = document.getElementById('semua');
 let angka = 1;
 let data = [];
+
+
+semua.addEventListener('click', (e) => {
+    clearActiveClass();
+    e.target.classList.add('active');
+    loadData();
+})
+
+belum.addEventListener('click', (e) => {
+    clearActiveClass();
+    e.target.classList.add('active');
+    let dataBelum = data.filter(function (item){
+        return item.selesai == false;
+    });
+    cleanTable();
+    dataBelum.forEach(item => generateTable(item));
+})
+
+selesai.addEventListener('click', (e) => {
+    clearActiveClass();
+    e.target.classList.add('active');
+    let dataBelum = data.filter(function (item){
+        return item.selesai == true;
+    });
+    cleanTable();
+    dataBelum.forEach(item => generateTable(item));
+})
+
+function clearActiveClass(){
+    let opsi = document.querySelectorAll('.opsi');
+    opsi.forEach((item) => {
+        item.classList.remove('active');
+    })
+}
 
 tombolSearch.addEventListener('click', () => {
     searchBar.classList.toggle('active');
@@ -46,6 +83,7 @@ function insertData(listData) {
     let selesai = listData[3].checked;
 
     let rowData = { id: +new Date(), judul, pengarang, tahun, selesai };
+    semua.click();
     generateTable(rowData);
 
     data.push(rowData);
@@ -67,10 +105,15 @@ function updateLocalStorage() {
     localStorage.setItem('bookself', JSON.stringify(data));
 }
 
-function loadData() {
+function cleanTable() {
     document.getElementById('list-post').innerHTML = "";
     angka = 1;
+}
+
+function loadData() {
+    cleanTable();
     cleanData();
+    
     let loaded = localStorage.getItem('bookself');
     let dataSementara = JSON.parse(loaded);
     dataSementara.forEach((item) => {
@@ -163,7 +206,7 @@ function markCompleted(e) {
             data[currentIndexBook].selesai = true;
 
             updateLocalStorage();
-            loadData();
+            semua.click();
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil...',
@@ -191,7 +234,7 @@ function markNotCompleted(e) {
             data[currentIndexBook].selesai = false;
 
             updateLocalStorage();
-            loadData();
+            semua.click();
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil...',

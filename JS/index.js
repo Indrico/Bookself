@@ -30,9 +30,6 @@ form.addEventListener('submit', (e) => {
 
 clearSearch.addEventListener('click', () => {
     searchBar.value = "";
-    document.getElementById('list-post').innerHTML = "";
-    angka = 1;
-    cleanData();
     loadData();
 })
 
@@ -71,6 +68,9 @@ function updateLocalStorage() {
 }
 
 function loadData() {
+    document.getElementById('list-post').innerHTML = "";
+    angka = 1;
+    cleanData();
     let loaded = localStorage.getItem('bookself');
     let dataSementara = JSON.parse(loaded);
     dataSementara.forEach((item) => {
@@ -88,7 +88,11 @@ function generateTable(data) {
                         <td>${data.pengarang}</td>
                         <td>${data.tahun}</td>
                         <td>${data.selesai ? "Selesai" : "Belum Selesai"}</td>
-                        <td><i class='fas fa-trash' onclick='hapusData()'></i></td>
+                        <td>
+                            ${!data.selesai ? "<i class='fas fa-check-square fa-2x' onclick='markCompleted(this)' title='Tandai sebagai selesai'></i>" 
+                            : "<i class='fas fa-undo fa-2x' onclick='markNotCompleted(this)' title='Tandai sebagai belum selesai'></i>"}
+                            <i class='fas fa-trash fa-2x' onclick='hapusData(this)' title='Hapus ${data.judul}'></i>
+                        </td>
                     </tr>
                `;
     let tableRef = document.getElementById('table-list').getElementsByTagName('tbody')[0];
@@ -113,14 +117,96 @@ searchBar.addEventListener('keyup', (e) => {
     }
 })
 
-function hapusData() {
-    console.log("Terhapus");
+function hapusData(e) {
+    Swal.fire({
+        icon: 'warning',
+        title: 'Konfirmasi Hapus',
+        text: 'Apakah anda ingin menghapus entry ini ?',
+        showDenyButton: true,
+        confirmButtonText: 'Iya',
+        denyButtonText: 'Tidak',
+        focusDeny: true
+    }).then((res) => {
+        console.log(res);
+        if(res.isConfirmed){
+            let currentElement = e.parentNode.parentNode;
+            let id = currentElement.getElementsByTagName('td')[1];
+            const bookPosition = findDataById(id.innerText);
+            data.splice(bookPosition, 1);
+    
+            e.parentElement.parentElement.remove();
+            updateLocalStorage();
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil...',
+                text: 'Data berhasil dihapus!',
+            })
+        }
+    })
 }
+
+function markCompleted(e) {
+    Swal.fire({
+        icon: 'warning',
+        title: 'Konfirmasi',
+        text: 'Apakah anda ingin menandai buku ini selesai ?',
+        showDenyButton: true,
+        confirmButtonText: 'Iya',
+        denyButtonText: 'Tidak',
+        focusDeny: true
+    }).then((res) => {
+        console.log(res);
+        if(res.isConfirmed){
+            let currentElement = e.parentNode.parentNode;
+            let id = currentElement.getElementsByTagName('td')[1];
+            const currentIndexBook = findDataById(id.innerText);
+            data[currentIndexBook].selesai = true;
+
+            updateLocalStorage();
+            loadData();
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil...',
+                text: 'Buku berhasil ditandai selesai!',
+            })
+        }
+    })
+}
+
+function markNotCompleted(e) {
+    Swal.fire({
+        icon: 'warning',
+        title: 'Konfirmasi',
+        text: 'Apakah anda ingin menandai buku ini belum selesai ?',
+        showDenyButton: true,
+        confirmButtonText: 'Iya',
+        denyButtonText: 'Tidak',
+        focusDeny: true
+    }).then((res) => {
+        console.log(res);
+        if(res.isConfirmed){
+            let currentElement = e.parentNode.parentNode;
+            let id = currentElement.getElementsByTagName('td')[1];
+            const currentIndexBook = findDataById(id.innerText);
+            data[currentIndexBook].selesai = false;
+
+            updateLocalStorage();
+            loadData();
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil...',
+                text: 'Buku berhasil ditandai belum selesai!',
+            })
+        }
+    })
+}
+
+
 
 function findDataById(id) {
     let index = 0;
     for (item of data) {
-        if (item.id === id)
+        if (item.id == id)
             return index;
         index++;
     }

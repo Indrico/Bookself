@@ -186,6 +186,21 @@
     transform: translateX(350px);
 }
 
+.fa-trash {
+    cursor: pointer;
+    margin-left: 1rem;
+    color: rgb(228, 52, 52);
+}
+
+.fa-check-square{
+    color: rgb(69, 192, 69);
+    cursor: pointer;
+}
+
+.fa-undo {
+    cursor: pointer;
+    color: #3663c5;
+}
 
 .table-responsive{
     overflow-x: auto;

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookself</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="./CSS/style.css">
+</head>
+
+<body>
+    <div class="dim-container">
+
+    </div>
+    <div class="container">
+        <div class="navigation">
+            <div class="logo">
+                <a href="/">Bookself</a>
+                <p>Selamat datang, User</p>
+            </div>
+
+            <nav class="menu">
+                <ul>
+                    <a href='./dashboard.html'>
+                        <li> <i class='fas fa-th-large'></i>Dashboard</li>
+                    </a>
+                    <a href='./index.html'>
+                        <li class="active"> <i class='fas fa-book'></i>Buku</li>
+                    </a>
+                </ul>
+            </nav>
+        </div>
+        <div class="content-management">
+            <div class="header-menu">
+                <h1>Daftar Buku</h1>
+                <div class="search-bar">
+                    <i class="fas fa-search btn" id="searchButton"></i>
+                </div>
+            </div>
+
+
+            <div class="table-responsive">
+                <table class="list-post">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>ID</th>
+                            <th>Judul</th>
+                            <th>Pengarang</th>
+                            <th>Tahun</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="list-post">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="halaman" id="pagination-wrapper">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="search-menu" id="search-menu">
+        <div class="search-header">
+            <h2>Search</h2>
+            <i class="fas fa-times close-menu" id="close"></i>
+        </div>
+        <div class="mt-4">
+            <form action="" method="get" id="form-cari">
+                <div class="search-flex">
+                    <input type="text" placeholder="search" class="search-field mr-1" name="search-query">
+                    <select name="search-category" class="search-option">
+                        <option value="1">Pencari Informasi</option>
+                        <option value="2">Subject</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary mt-1 no-outline" id="tombol-search">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="dim-container" id="dim-display">
+
+    </div>
+</body>
+
+</html>

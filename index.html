@@ -40,10 +40,15 @@
                 <h1>Daftar Buku</h1>
                 <div class="search-bar">
                     <i class="fas fa-search btn" id="searchButton"></i>
+                    <input type="text" class="input" id="search" placeholder="Search...">
                 </div>
             </div>
 
-
+            <div class="tambah-buku-baru-container">
+                <div class="tambah-buku-baru">
+                    Tambah Buku Baru
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="list-post">
                     <thead>
@@ -54,6 +59,7 @@
                             <th>Pengarang</th>
                             <th>Tahun</th>
                             <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody id="list-post">
@@ -67,21 +73,34 @@
         </div>
     </div>
 
-    <div class="search-menu" id="search-menu">
-        <div class="search-header">
-            <h2>Search</h2>
+    <div class="menu-tambah-buku">
+        <div class="menu-tambah-buku-header">
+            <h2>Tambah Buku</h2>
             <i class="fas fa-times close-menu" id="close"></i>
         </div>
         <div class="mt-4">
-            <form action="" method="get" id="form-cari">
-                <div class="search-flex">
-                    <input type="text" placeholder="search" class="search-field mr-1" name="search-query">
-                    <select name="search-category" class="search-option">
-                        <option value="1">Pencari Informasi</option>
-                        <option value="2">Subject</option>
-                    </select>
+            <form id="form">
+                <div class="form-group">
+                    <label for="id">ID Buku</label>
+                    <input type="text" placeholder="ID Buku" class="form-control" name="id" required>
                 </div>
-                <button class="btn btn-primary mt-1 no-outline" id="tombol-search">Search</button>
+                <div class="form-group">
+                    <label for="judul">Judul Buku</label>
+                    <input type="text" placeholder="Judul" class="form-control" name="judul">
+                </div>
+                <div class="form-group">
+                    <label for="pengarang">Pengarang</label>
+                    <input type="text" placeholder="Pengarang" class="form-control" name="pengarang">
+                </div>
+                <div class="form-group">
+                    <label for="tahun">Tahun</label>
+                    <input type="text" placeholder="Tahun" class="form-control" name="tahun">
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="completed" id="completed">
+                    <label for="completed">Sudah selesai dibaca</label>
+                </div>
+                <button class="btn btn-primary no-outline" id="submit">Submit</button>
             </form>
         </div>
     </div>
@@ -89,6 +108,7 @@
     <div class="dim-container" id="dim-display">
 
     </div>
+    <script src="./JS/index.js"></script>
 </body>
 
 </html>

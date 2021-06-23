@@ -407,6 +407,15 @@ label {
         width: 100%;
         height: 10vh;
     }
+    .search-bar .btn, .search-bar .input, .search-bar .fa-times{
+        left: 0px;
+    }
+    .search-bar.active .input{
+        width: 200px;
+    }
+    .search-bar.active .fa-times{
+        transform: translateX(300px);
+    }
     .header-mobile h2{
         color: white;
         font-size: 16px;
@@ -441,7 +450,7 @@ label {
     }
     .header-menu{
         margin-top: 0;
-        justify-content: flex-end;
+        justify-content: flex-start;
     }
     .header-menu h1{
         display: none;
@@ -471,5 +480,20 @@ label {
         width: 100vw;
         z-index: 99;
         display: none;
+    }
+    .tambah-buku-baru {
+        padding: 5px 10px;
+        margin: 10px 0px;
+        font-size: 12px;
+    }
+    .opsi{
+        font-size: 12px;
+        text-align: center;
+    }
+    .content-management{
+        padding: 0;
+    }
+    td{
+        white-space: nowrap;
     }
 }

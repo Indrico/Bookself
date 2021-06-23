@@ -22,7 +22,7 @@ semua.addEventListener('click', (e) => {
 belum.addEventListener('click', (e) => {
     clearActiveClass();
     e.target.classList.add('active');
-    let dataBelum = data.filter(function (item){
+    let dataBelum = data.filter(function (item) {
         return item.selesai == false;
     });
     cleanTable();
@@ -32,14 +32,14 @@ belum.addEventListener('click', (e) => {
 selesai.addEventListener('click', (e) => {
     clearActiveClass();
     e.target.classList.add('active');
-    let dataBelum = data.filter(function (item){
+    let dataBelum = data.filter(function (item) {
         return item.selesai == true;
     });
     cleanTable();
     dataBelum.forEach(item => generateTable(item));
 })
 
-function clearActiveClass(){
+function clearActiveClass() {
     let opsi = document.querySelectorAll('.opsi');
     opsi.forEach((item) => {
         item.classList.remove('active');
@@ -113,7 +113,7 @@ function cleanTable() {
 function loadData() {
     cleanTable();
     cleanData();
-    
+
     let loaded = localStorage.getItem('bookself');
     let dataSementara = JSON.parse(loaded);
     dataSementara.forEach((item) => {
@@ -132,8 +132,8 @@ function generateTable(data) {
                         <td>${data.tahun}</td>
                         <td>${data.selesai ? "Selesai" : "Belum Selesai"}</td>
                         <td>
-                            ${!data.selesai ? "<i class='fas fa-check-square fa-2x' onclick='markCompleted(this)' title='Tandai sebagai selesai'></i>" 
-                            : "<i class='fas fa-undo fa-2x' onclick='markNotCompleted(this)' title='Tandai sebagai belum selesai'></i>"}
+                            ${!data.selesai ? "<i class='fas fa-check-square fa-2x' onclick='markCompleted(this)' title='Tandai sebagai selesai'></i>"
+            : "<i class='fas fa-undo fa-2x' onclick='markNotCompleted(this)' title='Tandai sebagai belum selesai'></i>"}
                             <i class='fas fa-trash fa-2x' onclick='hapusData(this)' title='Hapus ${data.judul}'></i>
                         </td>
                     </tr>
@@ -171,12 +171,12 @@ function hapusData(e) {
         focusDeny: true
     }).then((res) => {
         console.log(res);
-        if(res.isConfirmed){
+        if (res.isConfirmed) {
             let currentElement = e.parentNode.parentNode;
             let id = currentElement.getElementsByTagName('td')[1];
             const bookPosition = findDataById(id.innerText);
             data.splice(bookPosition, 1);
-    
+
             e.parentElement.parentElement.remove();
             updateLocalStorage();
             Swal.fire({
@@ -199,7 +199,7 @@ function markCompleted(e) {
         focusDeny: true
     }).then((res) => {
         console.log(res);
-        if(res.isConfirmed){
+        if (res.isConfirmed) {
             let currentElement = e.parentNode.parentNode;
             let id = currentElement.getElementsByTagName('td')[1];
             const currentIndexBook = findDataById(id.innerText);
@@ -227,7 +227,7 @@ function markNotCompleted(e) {
         focusDeny: true
     }).then((res) => {
         console.log(res);
-        if(res.isConfirmed){
+        if (res.isConfirmed) {
             let currentElement = e.parentNode.parentNode;
             let id = currentElement.getElementsByTagName('td')[1];
             const currentIndexBook = findDataById(id.innerText);

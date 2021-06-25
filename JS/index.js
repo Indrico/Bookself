@@ -116,10 +116,12 @@ function loadData() {
 
     let loaded = localStorage.getItem('bookself');
     let dataSementara = JSON.parse(loaded);
-    dataSementara.forEach((item) => {
-        data.push(item);
-        generateTable(item);
-    })
+    if (dataSementara){
+        dataSementara.forEach((item) => {
+            data.push(item);
+            generateTable(item);
+        })
+    }
 }
 
 function generateTable(data) {
